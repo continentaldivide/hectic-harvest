@@ -10,7 +10,7 @@ Hectic Harvest is a gentle jab at the strange dichotomy of the stressful peacefu
 
 - HTML/CSS/JS DOM + Canvas
 - Assets from [itch.io](https://cupnooble.itch.io/sprout-lands-asset-pack)
-- Likely some implementation of Phaser
+- If time permits, possibly Phaser 3.5
 
 ## Wireframe
 
@@ -18,17 +18,23 @@ Hectic Harvest is a gentle jab at the strange dichotomy of the stressful peacefu
 
 ## MVP Goals
 
+- Game starts with an instructions page describing the game objective and controls.
 - Game is a 'race against the clock' -- game ends when the timer runs out.
-- User has a controllable avatar that can walk between rows of crops and interact to collect them.
+- User has a controllable avatar that can walk between rows of crops and interact to collect them. Interact uses hit detection; if avatar is touching/standing on a crop, that crop can be harvested with a button press.
 - Score increases for each crop harvested.
-- Win state can be based on certain point thresholds, or the game objective can simply be attaining the highest possible score.
+- Game has no direct win/loss condition; objective is simply to maximize points within the time limit.
 
 ## Stretch Goals
 
+- Add an additional 'narrative/flavor' opening screen.
+- Add custom assets from itch.io.
+- Add ability to pause game and/or re-display instructions.
+- Create some kind of 'movement penalty' with crop lines. Maybe they're bounded as impassable, or maybe the player moves more slowly while intersecting the crop line.
 - Crops need to be watered to be harvested! Instead of a single interaction, each crop will require multiple interactions -- watering to allow a sprout to progress and harvesting when it's mature.
 - Point variance system: different crops are worth different amounts of points.
 - Poison mushrooms! Better not touch these...
 - Different difficulty levels. (Faster/shorter clock? Faster crop spawns? Higher point threshold for victory?)
+- If firing on all cylinders with other objectives, possibly integrate phaser.
 
 ## Potential Roadblocks
 
