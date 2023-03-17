@@ -4,7 +4,7 @@
 
 Cozy farming games like Harvest Moon and Stardew Valley are near and dear to my heart. They're a great way to unwind and destress...at least, that's what I used to think. In reality, these games have a frenetic quality that finds me rushing to till fields before the sun goes down, maximize my pumpkin yields (have to harvest today -- it's almost winter!), racing to finish my fishing before the shop closes so I can sell my haul...and the list goes on.
 
-Hectic Harvest is a gentle jab at the strange dichotomy of the stressful peaceful farming sim. You play Taylor, the harried hare hurrying to bring order to the garden and maximize its output. You'll race against the clock as crops quickly grow across several rows of tilled soil, and the more you can collect before time runs out, the longer you'll be able to _veg out_ and enjoy the _fruits_ of your labor.
+Hectic Harvest is a gentle jab at the strange dichotomy of the stressful peaceful farming sim. You play Taylor, the harried hare hurrying to bring order to the garden and maximize its output. You'll race against the clock as crops quickly grow across several rows of tilled soil, and the more you can collect before time runs out, the longer you'll be able to _veg out_ and enjoy the _fruits_ of your labor after a hard day's work.
 
 ## Tech Stack
 
@@ -18,7 +18,7 @@ Hectic Harvest is a gentle jab at the strange dichotomy of the stressful peacefu
 
 ## MVP Goals
 
-- Game starts with an instructions page describing the game objective and controls.
+- Game starts with an unskippable instructions page describing the game objective and controls.
 - Game is a 'race against the clock' -- game ends when the timer runs out.
 - User has a controllable avatar that can walk between rows of crops and interact to collect them. Interact uses hit detection; if avatar is touching/standing on a crop, that crop can be harvested with a button press.
 - Score increases for each crop harvested.
