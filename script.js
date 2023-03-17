@@ -4,6 +4,13 @@ const ctx = canvas.getContext("2d");
 canvas.setAttribute("height", getComputedStyle(canvas).height);
 canvas.setAttribute("width", getComputedStyle(canvas).width);
 
+// Force canvas height to be a multiple of 10px so avatar can
+// sit flush with the bottom.  Leave 1px extra to avoid the
+// appearance of avatar spilling out of canvas.
+if (canvas.height % 10 !== 0) {
+  canvas.height -= (canvas.height % 10) - 1;
+}
+
 const playerCharacter = {
   x: 10,
   y: 10,
