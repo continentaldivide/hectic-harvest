@@ -23,19 +23,38 @@ const playerCharacter = {
   },
 };
 
-const soilBed = {
-  x: 100,
-  y: 100,
-  width: 100,
-  // leaves space above and below for avatar to move without
-  // touching; can change this if/when avatar is changed
-  height: canvas.height - 200,
-  color: "#3d2b24",
+class SoilBed {
+  constructor(x) {
+    this.x = x;
+    this.y = 100;
+    this.width = 100;
+    this.height = canvas.height - 200;
+    this.color = "#3d2b24";
+  }
   render() {
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.width, this.height);
-  },
-};
+  }
+}
+
+const soilBedA = new SoilBed(100);
+const soilBedB = new SoilBed(300);
+const soilBedC = new SoilBed(canvas.width - 400);
+const soilBedD = new SoilBed(canvas.width - 200);
+
+// const soilBed = {
+//   x: 100,
+//   y: 100,
+//   width: 100,
+//   // leaves space above and below for avatar to move without
+//   // touching; can change this if/when avatar is changed
+//   height: canvas.height - 200,
+//   color: "#3d2b24",
+//   render() {
+//     ctx.fillStyle = this.color;
+//     ctx.fillRect(this.x, this.y, this.width, this.height);
+//   },
+// };
 
 document.addEventListener("keydown", handleKeyPressEvent);
 
@@ -79,7 +98,10 @@ function handleKeyPressEvent(e) {
 
 const gameLoop = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  soilBed.render();
+  soilBedA.render();
+  soilBedB.render();
+  soilBedC.render();
+  soilBedD.render();
   playerCharacter.render();
 };
 
