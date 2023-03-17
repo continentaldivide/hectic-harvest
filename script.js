@@ -18,7 +18,21 @@ const playerCharacter = {
   height: 100,
   color: "#ccc",
   render() {
-    ctx.fillStyle = "#ccc";
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.x, this.y, this.width, this.height);
+  },
+};
+
+const soilBed = {
+  x: 100,
+  y: 100,
+  width: 100,
+  // leaves space above and below for avatar to move without
+  // touching; can change this if/when avatar is changed
+  height: canvas.height - 200,
+  color: "#3d2b24",
+  render() {
+    ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.width, this.height);
   },
 };
@@ -65,6 +79,7 @@ function handleKeyPressEvent(e) {
 
 const gameLoop = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  soilBed.render();
   playerCharacter.render();
 };
 
