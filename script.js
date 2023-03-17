@@ -23,20 +23,36 @@ function handleKeyPressEvent(e) {
   switch (e.key) {
     case "w":
     case "ArrowUp":
-      playerCharacter.y -= speed;
-      break;
+      if (playerCharacter.y - speed >= 0) {
+        playerCharacter.y -= speed;
+        break;
+      } else {
+        break;
+      }
     case "s":
     case "ArrowDown":
-      playerCharacter.y += speed;
-      break;
+      if (playerCharacter.y + playerCharacter.height + speed <= canvas.height) {
+        playerCharacter.y += speed;
+        break;
+      } else {
+        break;
+      }
     case "a":
     case "ArrowLeft":
-      playerCharacter.x -= speed;
-      break;
+      if (playerCharacter.x - speed >= 0) {
+        playerCharacter.x -= speed;
+        break;
+      } else {
+        break;
+      }
     case "d":
     case "ArrowRight":
-      playerCharacter.x += speed;
-      break;
+      if (playerCharacter.x + playerCharacter.width + speed <= canvas.width) {
+        playerCharacter.x += speed;
+        break;
+      } else {
+        break;
+      }
   }
 }
 
