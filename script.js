@@ -3,6 +3,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 canvas.setAttribute("height", getComputedStyle(canvas).height);
 canvas.setAttribute("width", getComputedStyle(canvas).width);
+let soilBedArray = [];
 let plantArray = [];
 
 // Force canvas height to be a multiple of 10px so avatar can
@@ -31,6 +32,7 @@ class SoilBed {
     this.width = 100;
     this.height = canvas.height - 200;
     this.color = "#3d2b24";
+    soilBedArray.push(this);
   }
   render() {
     ctx.fillStyle = this.color;
@@ -38,10 +40,20 @@ class SoilBed {
   }
 }
 
+// Eventually when plants are spawning randomly, they will grab
+// a set of x and y spawn coordinates from this array to ensure
+// they're spawning in acceptable/expected locations
+let validPlantSpots = [
+  [125, 125],
+  [125, canvas.height / 2 - 25],
+  [(125, canvas.height - 175)],
+];
+
 class Plant {
   constructor() {
-    this.x = 150;
-    this.y = 150;
+    let randomPlantSpot = Math.floor(Math.random() * validPlantSpots.length);
+    this.x = validPlantSpots[randomPlantSpot][0];
+    this.y = validPlantSpots[randomPlantSpot][1];
     this.width = 50;
     this.height = 50;
     this.color = "green";
@@ -116,10 +128,7 @@ function handleKeyPressEvent(e) {
 
 const gameLoop = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  soilBedA.render();
-  soilBedB.render();
-  soilBedC.render();
-  soilBedD.render();
+  soilBedArray.forEach((soilBed) => soilBed.render());
   plantArray.forEach((plant) => plant.render());
   playerCharacter.render();
 };
