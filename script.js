@@ -3,6 +3,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 canvas.setAttribute("height", getComputedStyle(canvas).height);
 canvas.setAttribute("width", getComputedStyle(canvas).width);
+let plantArray = [];
 
 // Force canvas height to be a multiple of 10px so avatar can
 // sit flush with the bottom.  Leave 1px extra to avoid the
@@ -44,6 +45,7 @@ class Plant {
     this.width = 50;
     this.height = 50;
     this.color = "green";
+    plantArray.push(this);
   }
   render() {
     ctx.fillStyle = this.color;
@@ -118,7 +120,7 @@ const gameLoop = () => {
   soilBedB.render();
   soilBedC.render();
   soilBedD.render();
-  testPlant.render();
+  plantArray.forEach((plant) => plant.render());
   playerCharacter.render();
 };
 
