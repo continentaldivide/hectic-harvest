@@ -10,7 +10,7 @@ body {
 }
 
 #container {
-  width: 60vw;
+  width: 70vw;
   display: grid;
   grid-template-rows: 0.25fr 0.75fr;
   grid-template-columns: 0.25fr 0.5fr 0.25fr;

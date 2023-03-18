@@ -37,10 +37,26 @@ class SoilBed {
   }
 }
 
+class Plant {
+  constructor() {
+    this.x = 150;
+    this.y = 150;
+    this.width = 50;
+    this.height = 50;
+    this.color = "green";
+  }
+  render() {
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.x, this.y, this.width, this.height);
+  }
+}
+
 const soilBedA = new SoilBed(100);
 const soilBedB = new SoilBed(300);
 const soilBedC = new SoilBed(canvas.width - 400);
 const soilBedD = new SoilBed(canvas.width - 200);
+
+const testPlant = new Plant();
 
 // const soilBed = {
 //   x: 100,
@@ -102,6 +118,7 @@ const gameLoop = () => {
   soilBedB.render();
   soilBedC.render();
   soilBedD.render();
+  testPlant.render();
   playerCharacter.render();
 };
 
