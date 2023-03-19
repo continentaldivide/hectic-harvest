@@ -46,7 +46,7 @@ class SoilBed {
 let validPlantSpots = [
   [125, 125],
   [125, canvas.height / 2 - 25],
-  [(125, canvas.height - 175)],
+  [125, canvas.height - 175],
 ];
 
 class Plant {
