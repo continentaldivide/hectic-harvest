@@ -57,6 +57,18 @@ let validPlantSpots = [
     location: [125, canvas.height - 175],
     occupied: false,
   },
+  {
+    location: [325, 125],
+    occupied: false,
+  },
+  {
+    location: [325, canvas.height / 2 - 25],
+    occupied: false,
+  },
+  {
+    location: [325, canvas.height - 175],
+    occupied: false,
+  },
 ];
 
 const getOpenPlantSpots = () => {
@@ -82,12 +94,12 @@ const markPlantSpotOccupied = (plant) => {
 class Plant {
   constructor() {
     getOpenPlantSpots();
-    if (!openPlantSpots) {
+    if (openPlantSpots.length === 0) {
       return;
     }
     let randomPlantSpot = Math.floor(Math.random() * openPlantSpots.length);
-    this.x = validPlantSpots[randomPlantSpot].location[0];
-    this.y = validPlantSpots[randomPlantSpot].location[1];
+    this.x = openPlantSpots[randomPlantSpot].location[0];
+    this.y = openPlantSpots[randomPlantSpot].location[1];
     markPlantSpotOccupied(this);
     this.width = 50;
     this.height = 50;
@@ -104,8 +116,6 @@ new SoilBed(100);
 new SoilBed(300);
 new SoilBed(canvas.width - 400);
 new SoilBed(canvas.width - 200);
-
-new Plant();
 
 document.addEventListener("keydown", handleKeyPressEvent);
 
@@ -154,4 +164,11 @@ const gameLoop = () => {
   playerCharacter.render();
 };
 
+const spawnPlant = () => {
+  if (Math.random() < 0.3) {
+    new Plant();
+  }
+};
+
 const gameLoopInterval = setInterval(gameLoop, 60);
+const plantSpawnInterval = setInterval(spawnPlant, 1000);
