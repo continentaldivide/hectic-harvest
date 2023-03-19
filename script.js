@@ -44,16 +44,26 @@ class SoilBed {
 // a set of x and y spawn coordinates from this array to ensure
 // they're spawning in acceptable/expected locations
 let validPlantSpots = [
-  [125, 125],
-  [125, canvas.height / 2 - 25],
-  [125, canvas.height - 175],
+  {
+    location: [125, 125],
+    occupied: false,
+  },
+  {
+    location: [125, canvas.height / 2 - 25],
+    occupied: false,
+  },
+  {
+    location: [125, canvas.height - 175],
+    occupied: false,
+  },
 ];
 
 class Plant {
   constructor() {
     let randomPlantSpot = Math.floor(Math.random() * validPlantSpots.length);
-    this.x = validPlantSpots[randomPlantSpot][0];
-    this.y = validPlantSpots[randomPlantSpot][1];
+    validPlantSpots[randomPlantSpot].occupied = true;
+    this.x = validPlantSpots[randomPlantSpot].location[0];
+    this.y = validPlantSpots[randomPlantSpot].location[1];
     this.width = 50;
     this.height = 50;
     this.color = "green";
