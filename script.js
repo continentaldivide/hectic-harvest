@@ -41,8 +41,8 @@ class SoilBed {
   }
 }
 
-// Eventually when plants are spawning randomly, they will grab
-// a set of x and y spawn coordinates from this array to ensure
+// When plants are spawning randomly, they will grab a set
+// of x and y spawn coordinates from this array to ensure
 // they're spawning in acceptable/expected locations
 let validPlantSpots = [
   {
@@ -100,26 +100,12 @@ class Plant {
   }
 }
 
-const soilBedA = new SoilBed(100);
-const soilBedB = new SoilBed(300);
-const soilBedC = new SoilBed(canvas.width - 400);
-const soilBedD = new SoilBed(canvas.width - 200);
+new SoilBed(100);
+new SoilBed(300);
+new SoilBed(canvas.width - 400);
+new SoilBed(canvas.width - 200);
 
-const testPlant = new Plant();
-
-// const soilBed = {
-//   x: 100,
-//   y: 100,
-//   width: 100,
-//   // leaves space above and below for avatar to move without
-//   // touching; can change this if/when avatar is changed
-//   height: canvas.height - 200,
-//   color: "#3d2b24",
-//   render() {
-//     ctx.fillStyle = this.color;
-//     ctx.fillRect(this.x, this.y, this.width, this.height);
-//   },
-// };
+new Plant();
 
 document.addEventListener("keydown", handleKeyPressEvent);
 
