@@ -5,6 +5,7 @@ canvas.setAttribute("height", getComputedStyle(canvas).height);
 canvas.setAttribute("width", getComputedStyle(canvas).width);
 let soilBedArray = [];
 let plantArray = [];
+let openPlantSpots = [];
 
 // Force canvas height to be a multiple of 10px so avatar can
 // sit flush with the bottom.  Leave 1px extra to avoid the
@@ -58,12 +59,36 @@ let validPlantSpots = [
   },
 ];
 
+const getOpenPlantSpots = () => {
+  openPlantSpots = [];
+  validPlantSpots.forEach((spot) => {
+    if (!spot.occupied) {
+      openPlantSpots.push(spot);
+    }
+  });
+};
+
+// Used when spawning new plant.  After having found an open spot and
+//  having given its coords to the new plant, this finds the corresponding
+// spot in the array of valid spots and marks it as occupied.
+const markPlantSpotOccupied = (plant) => {
+  validPlantSpots.forEach((spot) => {
+    if (plant.x === spot.location[0] && plant.y === spot.location[1]) {
+      spot.occupied = true;
+    }
+  });
+};
+
 class Plant {
   constructor() {
-    let randomPlantSpot = Math.floor(Math.random() * validPlantSpots.length);
-    validPlantSpots[randomPlantSpot].occupied = true;
+    getOpenPlantSpots();
+    if (!openPlantSpots) {
+      return;
+    }
+    let randomPlantSpot = Math.floor(Math.random() * openPlantSpots.length);
     this.x = validPlantSpots[randomPlantSpot].location[0];
     this.y = validPlantSpots[randomPlantSpot].location[1];
+    markPlantSpotOccupied(this);
     this.width = 50;
     this.height = 50;
     this.color = "green";
