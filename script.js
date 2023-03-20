@@ -198,7 +198,7 @@ function handleKeyPressEvent(e) {
         break;
       }
     case "f":
-      claimPlant();
+      playerInteract();
   }
 }
 
@@ -217,7 +217,7 @@ const detectHit = (object) => {
   }
 };
 
-const claimPlant = function () {
+const playerInteract = function () {
   plantArray.forEach((plant, i) => {
     if (detectHit(plant)) {
       plantArray.splice(i, 1);
