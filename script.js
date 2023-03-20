@@ -157,50 +157,42 @@ class Plant {
 
 // MOVEMENT
 
-document.addEventListener("keydown", handleKeyPressEvent);
+let keyState = {};
 
-function handleKeyPressEvent(e) {
-  let speed = 10;
+document.addEventListener("keydown", (e) => {
+  keyState[e.key] = true;
+});
+
+document.addEventListener("keyup", (e) => {
+  keyState[e.key] = false;
+});
+
+const handleMovement = () => {
+  let speed = 8;
   if (soilBedArray.some((bed) => detectHit(bed))) {
     speed = 3;
   }
-  switch (e.key) {
-    case "w":
-    case "ArrowUp":
-      if (playerCharacter.y - speed >= 0) {
-        playerCharacter.y -= speed;
-        break;
-      } else {
-        break;
-      }
-    case "s":
-    case "ArrowDown":
-      if (playerCharacter.y + playerCharacter.height + speed <= canvas.height) {
-        playerCharacter.y += speed;
-        break;
-      } else {
-        break;
-      }
-    case "a":
-    case "ArrowLeft":
-      if (playerCharacter.x - speed >= 0) {
-        playerCharacter.x -= speed;
-        break;
-      } else {
-        break;
-      }
-    case "d":
-    case "ArrowRight":
-      if (playerCharacter.x + playerCharacter.width + speed <= canvas.width) {
-        playerCharacter.x += speed;
-        break;
-      } else {
-        break;
-      }
-    case "f":
-      playerInteract();
+  if (keyState["a"] || keyState["ArrowLeft"]) {
+    if (playerCharacter.x - speed >= 0) {
+      playerCharacter.x -= speed;
+    }
   }
-}
+  if (keyState["d"] || keyState["ArrowRight"]) {
+    if (playerCharacter.x + playerCharacter.width + speed <= canvas.width) {
+      playerCharacter.x += speed;
+    }
+  }
+  if (keyState["w"] || keyState["ArrowUp"]) {
+    if (playerCharacter.y - speed >= 0) {
+      playerCharacter.y -= speed;
+    }
+  }
+  if (keyState["s"] || keyState["ArrowDown"]) {
+    if (playerCharacter.y + playerCharacter.height + speed <= canvas.height) {
+      playerCharacter.y += speed;
+    }
+  }
+};
 
 // HIT DETECTION / INTERACTIVITY
 
@@ -235,6 +227,10 @@ const gameLoop = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   soilBedArray.forEach((soilBed) => soilBed.render());
   plantArray.forEach((plant) => plant.render());
+  handleMovement();
+  if (keyState["f"]) {
+    playerInteract();
+  }
   playerCharacter.render();
   pointDisplay.innerText = pointTotal;
 };
@@ -245,5 +241,5 @@ const spawnPlant = () => {
   }
 };
 
-const gameLoopInterval = setInterval(gameLoop, 60);
+const gameLoopInterval = setInterval(gameLoop, 30);
 const plantSpawnInterval = setInterval(spawnPlant, 1000);
