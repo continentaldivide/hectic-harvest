@@ -1,4 +1,5 @@
 console.log("Have a snack for energy before you start 🥕");
+const pointDisplay = document.querySelector("#pointDisplay").firstChild;
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 canvas.setAttribute("height", getComputedStyle(canvas).height);
@@ -6,6 +7,7 @@ canvas.setAttribute("width", getComputedStyle(canvas).width);
 let soilBedArray = [];
 let plantArray = [];
 let openPlantSpots = [];
+let pointTotal = 0;
 
 // Force canvas height to be a multiple of 10px so avatar can
 // sit flush with the bottom.  Leave 1px extra to avoid the
@@ -195,6 +197,7 @@ const claimPlant = function () {
       markPlantSpotUnoccupied(plant);
     }
   });
+  pointTotal += 100;
 };
 
 // ESTABLISH GAMEPLAY LOOPS
@@ -204,6 +207,7 @@ const gameLoop = () => {
   soilBedArray.forEach((soilBed) => soilBed.render());
   plantArray.forEach((plant) => plant.render());
   playerCharacter.render();
+  pointDisplay.innerText = pointTotal;
 };
 
 const spawnPlant = () => {
