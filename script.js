@@ -17,8 +17,8 @@ if (canvas.height % 10 !== 0) {
 }
 
 const playerCharacter = {
-  x: 10,
-  y: 10,
+  x: canvas.width / 2 - 50,
+  y: canvas.height / 2 - 50,
   width: 100,
   height: 100,
   color: "#ccc",
@@ -136,6 +136,7 @@ class Plant {
 document.addEventListener("keydown", handleKeyPressEvent);
 
 function handleKeyPressEvent(e) {
+  console.log(e.key);
   const speed = 10;
   switch (e.key) {
     case "w":
@@ -214,7 +215,6 @@ const spawnPlant = () => {
   if (Math.random() < 0.3) {
     new Plant();
   }
-  console.log(detectHit(plantArray[0]));
 };
 
 const gameLoopInterval = setInterval(gameLoop, 60);
