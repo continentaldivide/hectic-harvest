@@ -41,9 +41,9 @@ class SoilBed {
   }
 }
 
-// When plants are spawning randomly, they will grab a set
-// of x and y spawn coordinates from this array to ensure
-// they're spawning in acceptable/expected locations
+// When a plant spawns, it will grab a set of x and
+// y spawn coordinates from this array to ensure
+// it's spawning in an acceptable/expected location.
 let validPlantSpots = [
   {
     location: [125, 125],
@@ -81,7 +81,7 @@ const getOpenPlantSpots = () => {
 };
 
 // Used when spawning new plant.  After having found an open spot and
-//  having given its coords to the new plant, this finds the corresponding
+// having given its coords to the new plant, this finds the corresponding
 // spot in the array of valid spots and marks it as occupied.
 const markPlantSpotOccupied = (plant) => {
   validPlantSpots.forEach((spot) => {
