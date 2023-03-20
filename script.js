@@ -26,6 +26,8 @@ const playerCharacter = {
   },
 };
 
+// SET UP NON-PLAYER CANVAS ELEMENTS
+
 class SoilBed {
   constructor(x) {
     this.x = x;
@@ -40,6 +42,11 @@ class SoilBed {
     ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 }
+
+new SoilBed(100);
+new SoilBed(300);
+new SoilBed(canvas.width - 400);
+new SoilBed(canvas.width - 200);
 
 // When a plant spawns, it will grab a set of x and
 // y spawn coordinates from this array to ensure
@@ -91,6 +98,16 @@ const markPlantSpotOccupied = (plant) => {
   });
 };
 
+// Used when player collects a plant.  Like the above, this finds the
+// corresponding spot in the array of valid spots and marks it as unoccupied.
+const markPlantSpotUnoccupied = (plant) => {
+  validPlantSpots.forEach((spot) => {
+    if (plant.x === spot.location[0] && plant.y === spot.location[1]) {
+      spot.occupied = false;
+    }
+  });
+};
+
 class Plant {
   constructor() {
     getOpenPlantSpots();
@@ -112,10 +129,7 @@ class Plant {
   }
 }
 
-new SoilBed(100);
-new SoilBed(300);
-new SoilBed(canvas.width - 400);
-new SoilBed(canvas.width - 200);
+// MOVEMENT
 
 document.addEventListener("keydown", handleKeyPressEvent);
 
@@ -157,17 +171,41 @@ function handleKeyPressEvent(e) {
   }
 }
 
+// HIT DETECTION / INTERACTIVITY
+
+const detectHit = (plant) => {
+  if (
+    playerCharacter.x < plant.x + plant.width &&
+    playerCharacter.x + playerCharacter.width > plant.x &&
+    playerCharacter.y < plant.y + plant.height &&
+    playerCharacter.y + playerCharacter.height > plant.y
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+// ESTABLISH GAMEPLAY LOOPS
+
 const gameLoop = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   soilBedArray.forEach((soilBed) => soilBed.render());
   plantArray.forEach((plant) => plant.render());
   playerCharacter.render();
+  plantArray.forEach((plant, i) => {
+    if (detectHit(plant)) {
+      plantArray.splice(i, 1);
+      markPlantSpotUnoccupied(plant);
+    }
+  });
 };
 
 const spawnPlant = () => {
   if (Math.random() < 0.3) {
     new Plant();
   }
+  console.log(detectHit(plantArray[0]));
 };
 
 const gameLoopInterval = setInterval(gameLoop, 60);
