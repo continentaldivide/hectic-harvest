@@ -168,6 +168,8 @@ function handleKeyPressEvent(e) {
       } else {
         break;
       }
+    case "f":
+      claimPlant();
   }
 }
 
@@ -186,6 +188,15 @@ const detectHit = (plant) => {
   }
 };
 
+const claimPlant = function () {
+  plantArray.forEach((plant, i) => {
+    if (detectHit(plant)) {
+      plantArray.splice(i, 1);
+      markPlantSpotUnoccupied(plant);
+    }
+  });
+};
+
 // ESTABLISH GAMEPLAY LOOPS
 
 const gameLoop = () => {
@@ -193,12 +204,6 @@ const gameLoop = () => {
   soilBedArray.forEach((soilBed) => soilBed.render());
   plantArray.forEach((plant) => plant.render());
   playerCharacter.render();
-  plantArray.forEach((plant, i) => {
-    if (detectHit(plant)) {
-      plantArray.splice(i, 1);
-      markPlantSpotUnoccupied(plant);
-    }
-  });
 };
 
 const spawnPlant = () => {
