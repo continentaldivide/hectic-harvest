@@ -1,5 +1,6 @@
 console.log("Have a snack for energy before you start 🥕");
 const pointDisplay = document.querySelector("#pointDisplay").firstChild;
+const timerDisplay = document.querySelector("#timerDisplay").firstChild;
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 canvas.setAttribute("height", getComputedStyle(canvas).height);
@@ -8,6 +9,7 @@ let soilBedArray = [];
 let plantArray = [];
 let openPlantSpots = [];
 let pointTotal = 0;
+let timer = 60;
 
 // Force canvas height to be a multiple of 10px so avatar can
 // sit flush with the bottom.  Leave 1px extra to avoid the
@@ -233,6 +235,11 @@ const gameLoop = () => {
   }
   playerCharacter.render();
   pointDisplay.innerText = pointTotal;
+  if (timer === 0) {
+    clearInterval(gameLoopInterval);
+    clearInterval(plantSpawnInterval);
+    timerDisplay.innerText = "time's up!";
+  }
 };
 
 const spawnPlant = () => {
@@ -241,5 +248,18 @@ const spawnPlant = () => {
   }
 };
 
+const countDown = () => {
+  timer -= 1;
+  if (timer > 9) {
+    timerDisplay.innerText = `0:${timer}`;
+  } else {
+    timerDisplay.innerText = `0:0${timer}`;
+  }
+  if (timer === 0) {
+    clearInterval(timerInterval);
+  }
+};
+
 const gameLoopInterval = setInterval(gameLoop, 30);
 const plantSpawnInterval = setInterval(spawnPlant, 1000);
+const timerInterval = setInterval(countDown, 1000);
