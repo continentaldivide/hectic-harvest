@@ -221,7 +221,9 @@ const playerInteract = function () {
   plantArray.forEach((plant, i) => {
     if (detectHit(plant)) {
       plantArray.splice(i, 1);
-      markPlantSpotUnoccupied(plant);
+      setTimeout(() => {
+        markPlantSpotUnoccupied(plant);
+      }, 8000);
       pointTotal += 100;
     }
   });
