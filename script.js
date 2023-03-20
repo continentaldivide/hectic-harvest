@@ -160,8 +160,10 @@ class Plant {
 document.addEventListener("keydown", handleKeyPressEvent);
 
 function handleKeyPressEvent(e) {
-  console.log(e.key);
-  const speed = 10;
+  let speed = 10;
+  if (soilBedArray.some((bed) => detectHit(bed))) {
+    speed = 3;
+  }
   switch (e.key) {
     case "w":
     case "ArrowUp":
@@ -202,12 +204,12 @@ function handleKeyPressEvent(e) {
 
 // HIT DETECTION / INTERACTIVITY
 
-const detectHit = (plant) => {
+const detectHit = (object) => {
   if (
-    playerCharacter.x < plant.x + plant.width &&
-    playerCharacter.x + playerCharacter.width > plant.x &&
-    playerCharacter.y < plant.y + plant.height &&
-    playerCharacter.y + playerCharacter.height > plant.y
+    playerCharacter.x < object.x + object.width &&
+    playerCharacter.x + playerCharacter.width > object.x &&
+    playerCharacter.y < object.y + object.height &&
+    playerCharacter.y + playerCharacter.height > object.y
   ) {
     return true;
   } else {
