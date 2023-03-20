@@ -78,6 +78,30 @@ let validPlantSpots = [
     location: [325, canvas.height - 175],
     occupied: false,
   },
+  {
+    location: [canvas.width - 375, 125],
+    occupied: false,
+  },
+  {
+    location: [canvas.width - 375, canvas.height / 2 - 25],
+    occupied: false,
+  },
+  {
+    location: [canvas.width - 375, canvas.height - 175],
+    occupied: false,
+  },
+  {
+    location: [canvas.width - 175, 125],
+    occupied: false,
+  },
+  {
+    location: [canvas.width - 175, canvas.height / 2 - 25],
+    occupied: false,
+  },
+  {
+    location: [canvas.width - 175, canvas.height - 175],
+    occupied: false,
+  },
 ];
 
 const getOpenPlantSpots = () => {
