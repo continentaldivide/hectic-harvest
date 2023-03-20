@@ -222,9 +222,9 @@ const claimPlant = function () {
     if (detectHit(plant)) {
       plantArray.splice(i, 1);
       markPlantSpotUnoccupied(plant);
+      pointTotal += 100;
     }
   });
-  pointTotal += 100;
 };
 
 // ESTABLISH GAMEPLAY LOOPS
