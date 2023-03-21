@@ -24,40 +24,49 @@ if (canvas.height % 10 !== 0) {
 
 let sprite = new Image();
 sprite.src = "./assets/CharacterSpritesheet.png";
-let numColumns = 8;
-let numRows = 24;
-let frameWidth = sprite.width / numColumns;
-let frameHeight = sprite.height / numRows;
-let currentFrame = 0;
 
-// Takes the passed-in frame (currentFrame), finds the starting
-// frame for the animation the passed-in frame belongs to, increments
-// currentFrame, and if this would push currentFrame into a new
-// animation, resets currentFrame to the starting frame for the
-// current animation.
-let cycleSpriteFrame = function (passedFrame) {
-  let startFrame = passedFrame - (passedFrame % 8);
-  currentFrame++;
-  if (currentFrame > startFrame + 7) {
-    currentFrame = startFrame;
+console.log(sprite);
+
+class Sprite {
+  constructor() {
+    (this.sprite = sprite),
+      (this.spritesheetColumns = 8),
+      (this.spritesheetRows = 24),
+      (this.frameWidth = this.sprite.width / this.spritesheetColumns),
+      (this.frameHeight = this.sprite.height / this.spritesheetRows),
+      (this.x = 20),
+      (this.y = 100),
+      (this.currentFrame = 32);
   }
-};
+  animateSprite() {
+    let column = this.currentFrame % this.spritesheetColumns;
+    let row = Math.floor(this.currentFrame / this.spritesheetColumns);
+    ctx.drawImage(
+      this.sprite,
+      column * this.frameWidth,
+      row * this.frameHeight,
+      this.frameWidth,
+      this.frameHeight,
+      canvas.width / 2 - 144,
+      this.y,
+      this.frameWidth * 6,
+      this.frameHeight * 6
+    );
+  }
+  // Finds the starting frame for the current animation, increments
+  // this.currentFrame, and if doing so will push this.currentFrame
+  // into a new animation, resets this.currentFrame to the starting
+  // frame for the current animation.
+  cycleSpriteFrame() {
+    let startFrame = this.currentFrame - (this.currentFrame % 8);
+    this.currentFrame++;
+    if (this.currentFrame > startFrame + 7) {
+      this.currentFrame = startFrame;
+    }
+  }
+}
 
-let animateSprite = function (currentFrame) {
-  let column = currentFrame % numColumns;
-  let row = Math.floor(currentFrame / numColumns);
-  ctx.drawImage(
-    sprite,
-    column * frameWidth,
-    row * frameHeight,
-    frameWidth,
-    frameHeight,
-    canvas.width / 2 - 144,
-    30,
-    frameWidth * 6,
-    frameHeight * 6
-  );
-};
+let playerSprite = new Sprite();
 
 // End of sprite code
 
@@ -276,7 +285,7 @@ const gameLoop = () => {
   if (keyState["f"]) {
     playerInteract();
   }
-  animateSprite(currentFrame);
+  playerSprite.animateSprite();
   playerCharacter.render();
   pointDisplay.innerText = pointTotal;
   if (timer === 0) {
@@ -308,11 +317,11 @@ const countDown = () => {
 // Trying nesting gameLoop interval into an onload event to see whether
 // this resolves the issue.
 window.onload = (e) => {
-  setInterval(gameLoop, 30);
+  gameLoopInterval = setInterval(gameLoop, 30);
 };
 // const gameLoopInterval = setInterval(gameLoop, 30);
 const plantSpawnInterval = setInterval(spawnPlant, 1000);
 const spriteFrameInterval = setInterval(() => {
-  cycleSpriteFrame(currentFrame);
+  playerSprite.cycleSpriteFrame();
 }, 60);
 const timerInterval = setInterval(countDown, 1000);
