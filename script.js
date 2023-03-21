@@ -42,7 +42,7 @@ let cycleSpriteFrame = function (passedFrame) {
     currentFrame = startFrame;
   }
 };
-console.log(frameWidth, frameHeight);
+
 let animateSprite = function (currentFrame) {
   let column = currentFrame % numColumns;
   let row = Math.floor(currentFrame / numColumns);
@@ -304,7 +304,13 @@ const countDown = () => {
   }
 };
 
-const gameLoopInterval = setInterval(gameLoop, 30);
+// Running into an issue where the sprite intermittently fails to load.
+// Trying nesting gameLoop interval into an onload event to see whether
+// this resolves the issue.
+window.onload = (e) => {
+  setInterval(gameLoop, 30);
+};
+// const gameLoopInterval = setInterval(gameLoop, 30);
 const plantSpawnInterval = setInterval(spawnPlant, 1000);
 const spriteFrameInterval = setInterval(() => {
   cycleSpriteFrame(currentFrame);
