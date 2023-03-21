@@ -18,6 +18,49 @@ if (canvas.height % 10 !== 0) {
   canvas.height -= (canvas.height % 10) - 1;
 }
 
+// Start of sprite code.  Need to continue refactoring/integrating
+// this with other code and ultimately replace the player avatar
+// square with the sprite.
+
+let sprite = new Image();
+sprite.src = "./assets/CharacterSpritesheet.png";
+let numColumns = 8;
+let numRows = 24;
+let frameWidth = sprite.width / numColumns;
+let frameHeight = sprite.height / numRows;
+let currentFrame = 0;
+
+// Takes the passed-in frame (currentFrame), finds the starting
+// frame for the animation the passed-in frame belongs to, increments
+// currentFrame, and if this would push currentFrame into a new
+// animation, resets currentFrame to the starting frame for the
+// current animation.
+let cycleSpriteFrame = function (passedFrame) {
+  let startFrame = passedFrame - (passedFrame % 8);
+  currentFrame++;
+  if (currentFrame > startFrame + 7) {
+    currentFrame = startFrame;
+  }
+};
+console.log(frameWidth, frameHeight);
+let animateSprite = function (currentFrame) {
+  let column = currentFrame % numColumns;
+  let row = Math.floor(currentFrame / numColumns);
+  ctx.drawImage(
+    sprite,
+    column * frameWidth,
+    row * frameHeight,
+    frameWidth,
+    frameHeight,
+    canvas.width / 2 - 144,
+    30,
+    frameWidth * 6,
+    frameHeight * 6
+  );
+};
+
+// End of sprite code
+
 const playerCharacter = {
   x: canvas.width / 2 - 50,
   y: canvas.height / 2 - 50,
@@ -233,6 +276,7 @@ const gameLoop = () => {
   if (keyState["f"]) {
     playerInteract();
   }
+  animateSprite(currentFrame);
   playerCharacter.render();
   pointDisplay.innerText = pointTotal;
   if (timer === 0) {
@@ -262,4 +306,7 @@ const countDown = () => {
 
 const gameLoopInterval = setInterval(gameLoop, 30);
 const plantSpawnInterval = setInterval(spawnPlant, 1000);
+const spriteFrameInterval = setInterval(() => {
+  cycleSpriteFrame(currentFrame);
+}, 60);
 const timerInterval = setInterval(countDown, 1000);
