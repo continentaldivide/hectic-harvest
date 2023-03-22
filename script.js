@@ -203,8 +203,16 @@ class PlantSprite {
 }
 
 class CarrotSprite extends PlantSprite {
+  pointValue = 100;
   drawSprite() {
     ctx.drawImage(this.sprite, 47, 33, 16, 16, this.x, this.y, 64, 64);
+  }
+}
+
+class StarfruitSprite extends PlantSprite {
+  pointValue = 500;
+  drawSprite() {
+    ctx.drawImage(this.sprite, 47, 208, 16, 16, this.x, this.y, 64, 64);
   }
 }
 
@@ -308,7 +316,7 @@ const playerInteract = function () {
       setTimeout(() => {
         markPlantSpotUnoccupied(plant);
       }, 8000);
-      pointTotal += 100;
+      pointTotal += plant.pointValue;
     }
   });
 };
@@ -330,12 +338,16 @@ const gameLoop = () => {
     clearInterval(plantSpawnInterval);
     timerDisplay.innerText = "time's up!";
   }
-  console.log(plantArray.some((plant) => detectHit(plant)));
 };
 
 const spawnPlant = () => {
   if (Math.random() < 0.3) {
-    new CarrotSprite();
+    let randomFruit = Math.random();
+    if (randomFruit > 0.2) {
+      new CarrotSprite();
+    } else {
+      new StarfruitSprite();
+    }
   }
 };
 
