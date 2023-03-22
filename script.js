@@ -52,13 +52,13 @@ class Sprite {
       // 16 in next two lines represents the 16px 'margin' of space around
       // the sprite that we're slicing into to avoid early hit detection.
       column * this.frameWidth + 16,
-      row * this.frameHeight + 16,
+      row * this.frameHeight + 14,
       this.spriteSize,
-      this.spriteSize,
+      this.spriteSize + 2,
       this.x,
       this.y,
       this.spriteSize * this.spriteScale,
-      this.spriteSize * this.spriteScale
+      (this.spriteSize + 2) * this.spriteScale
     );
   }
   // Finds the starting frame for the current animation, increments
