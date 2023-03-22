@@ -18,39 +18,44 @@ if (canvas.height % 10 !== 0) {
   canvas.height -= (canvas.height % 10) - 1;
 }
 
-// Start of sprite code.  Need to continue refactoring/integrating
-// this with other code and ultimately replace the player avatar
-// square with the sprite.
+// SET UP SPRITE CLASS AND GENERATE SPRITES
 
 let sprite = new Image();
 sprite.src = "./assets/CharacterSpritesheet.png";
-
-console.log(sprite);
 
 class Sprite {
   constructor() {
     (this.sprite = sprite),
       (this.spritesheetColumns = 8),
       (this.spritesheetRows = 24),
+      // this.frameWidth and this.frameHeight collectively divide the spritesheet into a grid.  Each
+      // grid-item or frame is a 16px x 16px character image with 16px of transparent space on all four
+      // sides.  We'll leave the frame size as 48x48 here, but slice into it when drawing the sprite so
+      // that that 'margin' isn't causing hit detection before the character actually touches something.
       (this.frameWidth = this.sprite.width / this.spritesheetColumns),
       (this.frameHeight = this.sprite.height / this.spritesheetRows),
-      (this.x = 20),
-      (this.y = 100),
-      (this.currentFrame = 32);
+      (this.x = canvas.width / 2 - 32),
+      (this.y = canvas.height / 2 - 32),
+      (this.currentFrame = 32),
+      (this.spriteSize = 16),
+      (this.spriteScale = 4);
   }
+
   animateSprite() {
     let column = this.currentFrame % this.spritesheetColumns;
     let row = Math.floor(this.currentFrame / this.spritesheetColumns);
     ctx.drawImage(
       this.sprite,
-      column * this.frameWidth,
-      row * this.frameHeight,
-      this.frameWidth,
-      this.frameHeight,
-      canvas.width / 2 - 144,
+      // 16 in next two lines represents the 16px 'margin' of space around
+      // the sprite that we're slicing into to avoid early hit detection.
+      column * this.frameWidth + 16,
+      row * this.frameHeight + 16,
+      this.spriteSize,
+      this.spriteSize,
+      this.x,
       this.y,
-      this.frameWidth * 6,
-      this.frameHeight * 6
+      this.spriteSize * this.spriteScale,
+      this.spriteSize * this.spriteScale
     );
   }
   // Finds the starting frame for the current animation, increments
@@ -67,20 +72,6 @@ class Sprite {
 }
 
 let playerSprite = new Sprite();
-
-// End of sprite code
-
-const playerCharacter = {
-  x: canvas.width / 2 - 50,
-  y: canvas.height / 2 - 50,
-  width: 100,
-  height: 100,
-  color: "#ccc",
-  render() {
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
-  },
-};
 
 // SET UP NON-PLAYER CANVAS ELEMENTS
 
@@ -227,23 +218,33 @@ const handleMovement = () => {
     speed = 3;
   }
   if (keyState["a"] || keyState["ArrowLeft"]) {
-    if (playerCharacter.x - speed >= 0) {
-      playerCharacter.x -= speed;
+    if (playerSprite.x - speed >= 0) {
+      playerSprite.x -= speed;
     }
   }
   if (keyState["d"] || keyState["ArrowRight"]) {
-    if (playerCharacter.x + playerCharacter.width + speed <= canvas.width) {
-      playerCharacter.x += speed;
+    if (
+      playerSprite.x +
+        playerSprite.spriteSize * playerSprite.spriteScale +
+        speed <=
+      canvas.width
+    ) {
+      playerSprite.x += speed;
     }
   }
   if (keyState["w"] || keyState["ArrowUp"]) {
-    if (playerCharacter.y - speed >= 0) {
-      playerCharacter.y -= speed;
+    if (playerSprite.y - speed >= 0) {
+      playerSprite.y -= speed;
     }
   }
   if (keyState["s"] || keyState["ArrowDown"]) {
-    if (playerCharacter.y + playerCharacter.height + speed <= canvas.height) {
-      playerCharacter.y += speed;
+    if (
+      playerSprite.y +
+        playerSprite.spriteSize * playerSprite.spriteScale +
+        speed <=
+      canvas.height
+    ) {
+      playerSprite.y += speed;
     }
   }
 };
@@ -252,10 +253,12 @@ const handleMovement = () => {
 
 const detectHit = (object) => {
   if (
-    playerCharacter.x < object.x + object.width &&
-    playerCharacter.x + playerCharacter.width > object.x &&
-    playerCharacter.y < object.y + object.height &&
-    playerCharacter.y + playerCharacter.height > object.y
+    playerSprite.x < object.x + object.width &&
+    playerSprite.x + playerSprite.spriteSize * playerSprite.spriteScale >
+      object.x &&
+    playerSprite.y < object.y + object.height &&
+    playerSprite.y + playerSprite.spriteSize * playerSprite.spriteScale >
+      object.y
   ) {
     return true;
   } else {
@@ -286,7 +289,6 @@ const gameLoop = () => {
     playerInteract();
   }
   playerSprite.animateSprite();
-  playerCharacter.render();
   pointDisplay.innerText = pointTotal;
   if (timer === 0) {
     clearInterval(gameLoopInterval);
