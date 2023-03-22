@@ -103,51 +103,51 @@ new SoilBed(canvas.width - 200);
 // it's spawning in an acceptable/expected location.
 let validPlantSpots = [
   {
-    location: [125, 125],
+    location: [116, 116],
     occupied: false,
   },
   {
-    location: [125, canvas.height / 2 - 25],
+    location: [116, canvas.height / 2 - 32],
     occupied: false,
   },
   {
-    location: [125, canvas.height - 175],
+    location: [116, canvas.height - 184],
     occupied: false,
   },
   {
-    location: [325, 125],
+    location: [316, 116],
     occupied: false,
   },
   {
-    location: [325, canvas.height / 2 - 25],
+    location: [316, canvas.height / 2 - 32],
     occupied: false,
   },
   {
-    location: [325, canvas.height - 175],
+    location: [316, canvas.height - 184],
     occupied: false,
   },
   {
-    location: [canvas.width - 375, 125],
+    location: [canvas.width - 384, 116],
     occupied: false,
   },
   {
-    location: [canvas.width - 375, canvas.height / 2 - 25],
+    location: [canvas.width - 384, canvas.height / 2 - 32],
     occupied: false,
   },
   {
-    location: [canvas.width - 375, canvas.height - 175],
+    location: [canvas.width - 384, canvas.height - 184],
     occupied: false,
   },
   {
-    location: [canvas.width - 175, 125],
+    location: [canvas.width - 184, 116],
     occupied: false,
   },
   {
-    location: [canvas.width - 175, canvas.height / 2 - 25],
+    location: [canvas.width - 184, canvas.height / 2 - 32],
     occupied: false,
   },
   {
-    location: [canvas.width - 175, canvas.height - 175],
+    location: [canvas.width - 184, canvas.height - 184],
     occupied: false,
   },
 ];
@@ -182,24 +182,29 @@ const markPlantSpotUnoccupied = (plant) => {
   });
 };
 
-class Plant {
+let plantSprite = new Image();
+plantSprite.src = "./assets/PlantSpritesheet.png";
+
+class PlantSprite {
   constructor() {
     getOpenPlantSpots();
     if (openPlantSpots.length === 0) {
       return;
     }
     let randomPlantSpot = Math.floor(Math.random() * openPlantSpots.length);
+    this.sprite = plantSprite;
     this.x = openPlantSpots[randomPlantSpot].location[0];
     this.y = openPlantSpots[randomPlantSpot].location[1];
+    this.width = 64;
+    this.height = 64;
     markPlantSpotOccupied(this);
-    this.width = 50;
-    this.height = 50;
-    this.color = "green";
     plantArray.push(this);
   }
-  render() {
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+}
+
+class CarrotSprite extends PlantSprite {
+  drawSprite() {
+    ctx.drawImage(this.sprite, 47, 33, 16, 16, this.x, this.y, 64, 64);
   }
 }
 
@@ -313,7 +318,7 @@ const playerInteract = function () {
 const gameLoop = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   soilBedArray.forEach((soilBed) => soilBed.render());
-  plantArray.forEach((plant) => plant.render());
+  plantArray.forEach((plant) => plant.drawSprite());
   handleMovement();
   if (keyState["f"]) {
     playerInteract();
@@ -325,11 +330,12 @@ const gameLoop = () => {
     clearInterval(plantSpawnInterval);
     timerDisplay.innerText = "time's up!";
   }
+  console.log(plantArray.some((plant) => detectHit(plant)));
 };
 
 const spawnPlant = () => {
   if (Math.random() < 0.3) {
-    new Plant();
+    new CarrotSprite();
   }
 };
 
