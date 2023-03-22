@@ -36,9 +36,10 @@ class Sprite {
       (this.frameHeight = this.sprite.height / this.spritesheetRows),
       (this.x = canvas.width / 2 - 32),
       (this.y = canvas.height / 2 - 32),
-      (this.currentFrame = 32),
+      (this.currentFrame = 64),
       (this.spriteSize = 16),
       (this.spriteScale = 4);
+    this.directionFacing = "down";
   }
 
   animateSprite() {
@@ -218,11 +219,18 @@ const handleMovement = () => {
     speed = 3;
   }
   if (keyState["a"] || keyState["ArrowLeft"]) {
+    if (playerSprite.directionFacing !== "left") {
+      playerSprite.currentFrame = 88;
+    }
     if (playerSprite.x - speed >= 0) {
       playerSprite.x -= speed;
     }
+    playerSprite.directionFacing = "left";
   }
   if (keyState["d"] || keyState["ArrowRight"]) {
+    if (playerSprite.directionFacing !== "right") {
+      playerSprite.currentFrame = 80;
+    }
     if (
       playerSprite.x +
         playerSprite.spriteSize * playerSprite.spriteScale +
@@ -231,13 +239,21 @@ const handleMovement = () => {
     ) {
       playerSprite.x += speed;
     }
+    playerSprite.directionFacing = "right";
   }
   if (keyState["w"] || keyState["ArrowUp"]) {
+    if (playerSprite.directionFacing !== "up") {
+      playerSprite.currentFrame = 72;
+    }
     if (playerSprite.y - speed >= 0) {
       playerSprite.y -= speed;
     }
+    playerSprite.directionFacing = "up";
   }
   if (keyState["s"] || keyState["ArrowDown"]) {
+    if (playerSprite.directionFacing !== "down") {
+      playerSprite.currentFrame = 64;
+    }
     if (
       playerSprite.y +
         playerSprite.spriteSize * playerSprite.spriteScale +
@@ -246,6 +262,7 @@ const handleMovement = () => {
     ) {
       playerSprite.y += speed;
     }
+    playerSprite.directionFacing = "down";
   }
 };
 
