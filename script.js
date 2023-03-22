@@ -1,4 +1,5 @@
 console.log("Have a snack for energy before you start 🥕");
+console.log("Current documented high score: Skirball -- 2100 points");
 const pointDisplay = document.querySelector("#pointDisplay").firstChild;
 const timerDisplay = document.querySelector("#timerDisplay").firstChild;
 const canvas = document.getElementById("canvas");
@@ -40,6 +41,7 @@ class Sprite {
       (this.spriteSize = 16),
       (this.spriteScale = 4);
     this.directionFacing = "down";
+    this.isSlowed = false;
   }
 
   animateSprite() {
@@ -215,8 +217,10 @@ document.addEventListener("keyup", (e) => {
 
 const handleMovement = () => {
   let speed = 8;
+  playerSprite.isSlowed = false;
   if (soilBedArray.some((bed) => detectHit(bed))) {
     speed = 3;
+    playerSprite.isSlowed = true;
   }
   if (keyState["a"] || keyState["ArrowLeft"]) {
     if (playerSprite.directionFacing !== "left") {
@@ -263,6 +267,15 @@ const handleMovement = () => {
       playerSprite.y += speed;
     }
     playerSprite.directionFacing = "down";
+  }
+  // Checks for a case where no key is actively being pressed and player direction
+  // is other than facing down, and if both true, resets player facing to down
+  if (
+    playerSprite.directionFacing !== "down" &&
+    !Object.values(keyState).includes(true)
+  ) {
+    playerSprite.directionFacing = "down";
+    playerSprite.currentFrame = 64;
   }
 };
 
