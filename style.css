@@ -4,7 +4,9 @@
 }
 
 body {
-  background-color: #193b22;
+  background-image: url("assets/bgTile.png");
+  background-size: 96px;
+  /* background-color: #193b22; */
   display: flex;
   justify-content: center;
 }
