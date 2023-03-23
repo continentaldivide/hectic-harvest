@@ -220,6 +220,13 @@ function runGame() {
     }
   }
 
+  class EggplantSprite extends PlantSprite {
+    pointValue = 200;
+    drawSprite() {
+      ctx.drawImage(this.sprite, 47, 81, 16, 16, this.x, this.y, 64, 64);
+    }
+  }
+
   class StarfruitSprite extends PlantSprite {
     pointValue = 500;
     drawSprite() {
@@ -354,8 +361,10 @@ function runGame() {
   const spawnPlant = () => {
     if (Math.random() < 0.3) {
       let randomFruit = Math.random();
-      if (randomFruit > 0.2) {
+      if (randomFruit > 0.4) {
         new CarrotSprite();
+      } else if (randomFruit > 0.1) {
+        new EggplantSprite();
       } else {
         new StarfruitSprite();
       }
