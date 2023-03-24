@@ -2,7 +2,7 @@
 
 ## Link to Project
 
-[https://www.hecticharvest.com](https://www.hecticharvest.com)
+[https://www.hecticharvest.com](hecticharvest.com)
 
 ## hop to it
 
