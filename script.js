@@ -8,9 +8,10 @@ const speakerPlayIcon = document.querySelector("#speakerPlayIcon");
 const speakerStopIcon = document.querySelector("#speakerStopIcon");
 const intro = document.querySelector(".intro");
 const outro = document.querySelector(".outro");
-const scoreReport = document.querySelector(".scoreReport")
+const scoreReport = document.querySelector(".scoreReport");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+let sessionHighScore = 0;
 
 const backgroundMusic = new Audio("./assets/backgroundMusic.wav");
 backgroundMusic.volume = 0.2;
@@ -44,7 +45,7 @@ function runGame() {
   let plantArray = [];
   let openPlantSpots = [];
   let pointTotal = 0;
-  let timer = 3;
+  let timer = 60;
   timerDisplay.innerText = "1:00";
   intro.style.display = "none";
   outro.style.display = "none";
@@ -382,7 +383,10 @@ function runGame() {
       intro.style.display = "none";
       outro.style.display = "flex";
       canvas.style.display = "none";
-      scoreReport.innerText += ` ${pointTotal}`
+      if (pointTotal > sessionHighScore) {
+        sessionHighScore = pointTotal;
+      }
+      scoreReport.innerText += ` ${pointTotal}\nsession high score: ${sessionHighScore}`;
       setTimeout(() => {
         outro.addEventListener("click", runGame);
       }, 1000);
