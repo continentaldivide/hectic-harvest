@@ -5,19 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hectic Harvest</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
   </head>
   <body>
     <div id="container">
       <aside id="timerDisplay"><h2>1:00</h2></aside>
-      <aside id="infoBar"><video autoplay width="200"><source src="assets/Hectic_Harvest_Logo.mp4"></video></aside>
+      <aside id="infoBar">
+        <video autoplay width="200">
+          <source src="./assets/Hectic_Harvest_Logo.mp4" />
+        </video>
+      </aside>
       <aside id="pointDisplay"><h2>0</h2></aside>
       <main>
         <canvas id="canvas"></canvas>
         <div class="intro">
-          <h1>placeholder intro text</h1>
-          <h1>click to proceed to the game</h1>
+          <aside class="controlsKeyTitle"><h1>Controls:</h1></aside>
+          <aside class="controlsKey"></aside>
+          <div class="introTextTitle">
+            <h1>instructions:</h1>
+          </div>
+          <div class="introText">
+            <p>
+              The crops have been planted -- time to reap the rewards! Navigate
+              your farm, collect as many fruits and veggies, and accumulate the
+              highest score you can before time runs out.
+            </p>
+            <h1>click to proceed to the game</h1>
+          </div>
+          <aside class="fruitsKeyTitle"><h1>Point values:</h1></aside>
+          <aside class="fruitsKey">
+            <ul>
+              <li><img src="./assets/carrotSprite.png" alt="" />100 points</li>
+              <li>
+                <img src="./assets/eggplantSprite.png" alt="" />200 points
+              </li>
+              <li>
+                <img src="./assets/starfruitSprite.png" alt="" />500 points
+              </li>
+            </ul>
+          </aside>
         </div>
       </main>
     </div>

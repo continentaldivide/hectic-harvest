@@ -21,7 +21,7 @@ body {
     "game game game";
 }
 
-aside {
+#container > aside {
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -61,9 +61,65 @@ canvas {
   background-size: 96px;
   width: 100%;
   height: 70vh;
+  display: grid;
+  grid-template-rows: 0.2fr 0.8fr;
+  grid-template-columns: 0.25fr 0.5fr 0.25fr;
+  grid-template-areas:
+    "controlsKeyTitle introTextTitle  fruitsKeyTitle"
+    "controlsKey      introText       fruitsKey";
+}
+
+.controlsKeyTitle {
+  grid-area: controlsKeyTitle;
+}
+
+.controlsKey {
+  grid-area: controlsKey;
+}
+
+.introTextTitle {
+  grid-area: introTextTitle;
 }
 
 .intro h1 {
   color: white;
   text-align: center;
+}
+
+.fruitsKeyTitle {
+  grid-area: fruitsKeyTitle;
+}
+.controlsKeyTitle,
+.introTextTitle,
+.fruitsKeyTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.introText {
+  grid-area: introText;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.fruitsKey {
+  grid-area: fruitsKey;
+}
+
+.fruitsKey ul {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  gap: 50px;
+}
+
+.fruitsKey ul li {
+  list-style-type: none;
+}
+
+img {
+  width: 48px;
 }
