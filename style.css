@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation&display=swap");
 
 * {
   box-sizing: border-box;
   margin: 0;
-  font-family: 'Edu NSW ACT Foundation', cursive;
+  font-family: "Edu NSW ACT Foundation", cursive;
 }
 
 body {
@@ -24,22 +24,26 @@ body {
     "game game game";
 }
 
-#container > aside {
+#timerDisplay {
+  grid-area: timerDisplay;
   display: flex;
   justify-content: center;
   align-items: flex-end;
 }
 
-#timerDisplay {
-  grid-area: timerDisplay;
-}
-
 #infoBar {
   grid-area: infoBar;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 #pointDisplay {
   grid-area: pointDisplay;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 30%;
 }
 
 h2 {
@@ -49,6 +53,20 @@ h2 {
 
 main {
   grid-area: game;
+  position: relative;
+}
+
+#speakerPlayIcon {
+  position: fixed;
+  top: 20px;
+  right: 40px;
+}
+
+#speakerStopIcon {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 40px;
 }
 
 canvas {
@@ -72,7 +90,8 @@ canvas {
     "controlsKey      introText       fruitsKey";
 }
 
-h1, p {
+h1,
+p {
   color: white;
   font-size: 3em;
   text-align: center;

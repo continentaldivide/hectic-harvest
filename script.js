@@ -4,9 +4,28 @@ console.log(
 );
 const pointDisplay = document.querySelector("#pointDisplay").firstChild;
 const timerDisplay = document.querySelector("#timerDisplay").firstChild;
+const speakerPlayIcon = document.querySelector("#speakerPlayIcon");
+const speakerStopIcon = document.querySelector("#speakerStopIcon");
 const intro = document.querySelector(".intro");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+
+const backgroundMusic = new Audio("./assets/backgroundMusic.wav");
+backgroundMusic.volume = 0.2;
+backgroundMusic.loop = true;
+backgroundMusic.play();
+
+speakerPlayIcon.addEventListener("click", (e) => {
+  backgroundMusic.pause();
+  speakerPlayIcon.style.display = "none";
+  speakerStopIcon.style.display = "block";
+});
+
+speakerStopIcon.addEventListener("click", (e) => {
+  backgroundMusic.play();
+  speakerStopIcon.style.display = "none";
+  speakerPlayIcon.style.display = "block";
+});
 
 let soilBedArray = [];
 let plantArray = [];

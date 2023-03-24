@@ -21,6 +21,8 @@
     <script src="./script.js" defer></script>
   </head>
   <body>
+    <img src="./assets/speakerPlaying.svg" id="speakerPlayIcon" />
+    <img src="./assets/speakerMute.svg" id="speakerStopIcon" />
     <div id="container">
       <aside id="timerDisplay"><h2>1:00</h2></aside>
       <aside id="infoBar">
@@ -28,7 +30,9 @@
           <source src="./assets/Hectic_Harvest_Logo.mp4" />
         </video>
       </aside>
-      <aside id="pointDisplay"><h2>0</h2></aside>
+      <aside id="pointDisplay">
+        <h2>0</h2>
+      </aside>
       <main>
         <canvas id="canvas"></canvas>
         <div class="intro">
@@ -50,12 +54,17 @@
           <aside class="fruitsKeyTitle"><h1>Point values:</h1></aside>
           <aside class="fruitsKey">
             <ul>
-              <li><img src="./assets/carrotSprite.png" alt="" /><p>100 points</p></li>
               <li>
-                <img src="./assets/eggplantSprite.png" alt="" /><p>200 points</p>
+                <img src="./assets/carrotSprite.png" alt="" />
+                <p>100 points</p>
               </li>
               <li>
-                <img src="./assets/starfruitSprite.png" alt="" /><p>500 points</p>
+                <img src="./assets/eggplantSprite.png" alt="" />
+                <p>200 points</p>
+              </li>
+              <li>
+                <img src="./assets/starfruitSprite.png" alt="" />
+                <p>500 points</p>
               </li>
             </ul>
           </aside>
