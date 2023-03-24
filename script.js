@@ -110,8 +110,8 @@ function runGame() {
   }
 
   new SoilBed(100);
-  new SoilBed(300);
-  new SoilBed(canvas.width - 400);
+  new SoilBed(400);
+  new SoilBed(canvas.width - 500);
   new SoilBed(canvas.width - 200);
 
   // When a plant spawns, it will grab a set of x and
@@ -131,27 +131,27 @@ function runGame() {
       occupied: false,
     },
     {
-      location: [316, 116],
+      location: [416, 116],
       occupied: false,
     },
     {
-      location: [316, canvas.height / 2 - 32],
+      location: [416, canvas.height / 2 - 32],
       occupied: false,
     },
     {
-      location: [316, canvas.height - 184],
+      location: [416, canvas.height - 184],
       occupied: false,
     },
     {
-      location: [canvas.width - 384, 116],
+      location: [canvas.width - 484, 116],
       occupied: false,
     },
     {
-      location: [canvas.width - 384, canvas.height / 2 - 32],
+      location: [canvas.width - 484, canvas.height / 2 - 32],
       occupied: false,
     },
     {
-      location: [canvas.width - 384, canvas.height - 184],
+      location: [canvas.width - 484, canvas.height - 184],
       occupied: false,
     },
     {
