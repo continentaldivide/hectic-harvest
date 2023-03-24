@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
+  font-family: 'Edu NSW ACT Foundation', cursive;
 }
 
 body {
@@ -69,21 +72,29 @@ canvas {
     "controlsKey      introText       fruitsKey";
 }
 
+h1, p {
+  color: white;
+  font-size: 3em;
+  text-align: center;
+}
+
 .controlsKeyTitle {
   grid-area: controlsKeyTitle;
 }
 
 .controlsKey {
   grid-area: controlsKey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.controlsKey img {
+  width: 50%;
 }
 
 .introTextTitle {
   grid-area: introTextTitle;
-}
-
-.intro h1 {
-  color: white;
-  text-align: center;
 }
 
 .fruitsKeyTitle {
@@ -101,25 +112,34 @@ canvas {
   grid-area: introText;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding-bottom: 50px;
 }
 
 .fruitsKey {
   grid-area: fruitsKey;
+  display: flex;
 }
 
 .fruitsKey ul {
   height: 100%;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around; */
+  justify-content: center;
   gap: 50px;
 }
 
 .fruitsKey ul li {
   list-style-type: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 img {
-  width: 48px;
+  width: 64px;
+}
+
+li p {
+  font-size: 2em;
 }
