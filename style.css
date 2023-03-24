@@ -84,6 +84,31 @@ canvas {
     "controlsKey      introText       fruitsKey";
 }
 
+.outro {
+  background-image: url("assets/farmTile.png");
+  background-size: 96px;
+  width: 100%;
+  height: 70vh;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.outro p {
+  position: absolute;
+  bottom: 10px;
+  color: #ccc;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+a:link,
+a:visited {
+  color: #ccc;
+}
+
 h1,
 p {
   color: white;

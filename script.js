@@ -7,6 +7,8 @@ const timerDisplay = document.querySelector("#timerDisplay").firstChild;
 const speakerPlayIcon = document.querySelector("#speakerPlayIcon");
 const speakerStopIcon = document.querySelector("#speakerStopIcon");
 const intro = document.querySelector(".intro");
+const outro = document.querySelector(".outro");
+const scoreReport = document.querySelector(".scoreReport")
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -26,12 +28,6 @@ speakerStopIcon.addEventListener("click", (e) => {
   speakerPlayIcon.style.display = "block";
 });
 
-let soilBedArray = [];
-let plantArray = [];
-let openPlantSpots = [];
-let pointTotal = 0;
-let timer = 60;
-
 let sprite = new Image();
 sprite.src = "./assets/CharacterSpritesheet.png";
 
@@ -44,7 +40,15 @@ setTimeout(() => {
 }, 2000);
 
 function runGame() {
+  let soilBedArray = [];
+  let plantArray = [];
+  let openPlantSpots = [];
+  let pointTotal = 0;
+  let timer = 3;
+  timerDisplay.innerText = "1:00";
   intro.style.display = "none";
+  outro.style.display = "none";
+  scoreReport.innerText = "your score:";
   canvas.style.display = "block";
   canvas.setAttribute("height", getComputedStyle(canvas).height);
   canvas.setAttribute("width", getComputedStyle(canvas).width);
@@ -374,7 +378,14 @@ function runGame() {
     if (timer === 0) {
       clearInterval(gameLoopInterval);
       clearInterval(plantSpawnInterval);
-      timerDisplay.innerText = "time's up!";
+      clearInterval(timerInterval);
+      intro.style.display = "none";
+      outro.style.display = "flex";
+      canvas.style.display = "none";
+      scoreReport.innerText += ` ${pointTotal}`
+      setTimeout(() => {
+        outro.addEventListener("click", runGame);
+      }, 1000);
     }
   };
 
@@ -397,9 +408,6 @@ function runGame() {
       timerDisplay.innerText = `0:${timer}`;
     } else {
       timerDisplay.innerText = `0:0${timer}`;
-    }
-    if (timer === 0) {
-      clearInterval(timerInterval);
     }
   };
 
