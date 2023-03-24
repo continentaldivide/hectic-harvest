@@ -88,8 +88,10 @@ function runGame() {
       let row = Math.floor(this.currentFrame / this.spritesheetColumns);
       ctx.drawImage(
         this.sprite,
-        // 16 in next two lines represents the 16px 'margin' of space around
-        // the sprite that we're slicing into to avoid early hit detection.
+        // 16 and 14 in next two lines represents the 'margin' of space around
+        // the sprite that we're slicing into to avoid early hit detection. We're
+        // only slicing 14 from the y value because the animation 'bounces' up
+        // into the margin.
         column * this.frameWidth + 16,
         row * this.frameHeight + 14,
         this.spriteSize,
@@ -275,7 +277,7 @@ function runGame() {
     let speed = 8;
     playerSprite.isSlowed = false;
     if (soilBedArray.some((bed) => detectHit(bed))) {
-      speed = 3;
+      speed = 4;
       playerSprite.isSlowed = true;
     }
     if (keyState["a"] || keyState["ArrowLeft"]) {
@@ -358,7 +360,7 @@ function runGame() {
         plantArray.splice(i, 1);
         setTimeout(() => {
           markPlantSpotUnoccupied(plant);
-        }, 8000);
+        }, 3000);
         pointTotal += plant.pointValue;
       }
     });
@@ -394,7 +396,7 @@ function runGame() {
   };
 
   const spawnPlant = () => {
-    if (Math.random() < 0.3) {
+    if (Math.random() < 0.33) {
       let randomFruit = Math.random();
       if (randomFruit > 0.4) {
         new CarrotSprite();
@@ -416,7 +418,7 @@ function runGame() {
   };
 
   gameLoopInterval = setInterval(gameLoop, 30);
-  plantSpawnInterval = setInterval(spawnPlant, 1000);
+  plantSpawnInterval = setInterval(spawnPlant, 500);
   spriteFrameInterval = setInterval(() => {
     playerSprite.cycleSpriteFrame();
   }, 60);

@@ -44,4 +44,4 @@ I'm extremely pleased with the result of my work on this project, and I think it
 - Sprites by [Cup Nooble](https://cupnooble.itch.io/), sourced [here](https://cupnooble.itch.io/sprout-lands-asset-pack). This includes the background of the HTML body element.
 - Music by [Lolurio](https://lolurio.itch.io/), sourced [here](https://lolurio.itch.io/jazz-bossa-nova-music).
 - Logo animation by [juanedcabrera](https://github.com/juanedcabrera).
-- Additional thanks to [juanedcabrera](https://github.com/juanedcabrera) for indespensable design consultation and game testing.
+- Additional thanks to [juanedcabrera](https://github.com/juanedcabrera) for indispensable design consultation and game testing.
