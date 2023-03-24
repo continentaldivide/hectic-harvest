@@ -57,13 +57,13 @@ main {
 }
 
 #speakerPlayIcon {
+  display: none;
   position: fixed;
   top: 20px;
   right: 40px;
 }
 
 #speakerStopIcon {
-  display: none;
   position: fixed;
   top: 20px;
   right: 40px;

@@ -13,7 +13,6 @@ const ctx = canvas.getContext("2d");
 const backgroundMusic = new Audio("./assets/backgroundMusic.wav");
 backgroundMusic.volume = 0.2;
 backgroundMusic.loop = true;
-backgroundMusic.play();
 
 speakerPlayIcon.addEventListener("click", (e) => {
   backgroundMusic.pause();
