@@ -1,41 +1,47 @@
 # hectic harvest
 
+## Link to Project
+
+[www.hecticharvest.com]
+
 ## hop to it
 
 Cozy farming games like Harvest Moon and Stardew Valley are near and dear to my heart. They're a great way to unwind and destress...at least, that's what I used to think. In reality, these games have a frenetic quality that finds me rushing to till fields before the sun goes down, maximize my pumpkin yields (have to harvest today -- it's almost winter!), racing to finish my fishing before the shop closes so I can sell my haul...and the list goes on.
 
-Hectic Harvest is a gentle jab at the strange dichotomy of the stressful peaceful farming sim. You play Taylor, the harried hare hurrying to bring order to the garden and maximize its output. You'll race against the clock as crops quickly grow across several rows of tilled soil, and the more you can collect before time runs out, the longer you'll be able to _veg out_ and enjoy the _fruits_ of your labor after a hard day's work.
-
-## Tech Stack
-
-- HTML/CSS/JS DOM + Canvas
-- Assets from [itch.io](https://cupnooble.itch.io/sprout-lands-asset-pack)
-- If time permits, possibly Phaser 3.5
+Hectic Harvest is a gentle jab at the strange dichotomy of the stressful peaceful farming sim. You play as Taylor, the harried hare hurrying to bring order to the garden and maximize its output. You'll race against the clock as crops quickly grow across several rows of tilled soil, and the more you can collect before time runs out, the longer you'll be able to _veg out_ and enjoy the _fruits_ of your labor after a hard day's work.
 
 ## Wireframe
 
 ![Wireframe](Project1Wireframe.png)
 
-## MVP Goals
+## Approach
 
-- Game starts with an unskippable instructions page describing the game objective and controls.
-- Game is a 'race against the clock' -- game ends when the timer runs out.
-- User has a controllable avatar that can walk between rows of crops and interact to collect them. Interact uses hit detection; if avatar is touching/standing on a crop, that crop can be harvested with a button press.
-- Score increases for each crop harvested.
-- Game has no direct win/loss condition; objective is simply to maximize points within the time limit.
+The approach I took to realize my goals for this project was to dive in deep with HTML 5 Canvas. I knew there would be a steep learning curve, but that it would be the most powerful option available to me for running a 2D game with animated sprites in-browser.
 
-## Stretch Goals
+## Technologies Used
 
-- Add an additional 'narrative/flavor' opening screen.
-- Add custom assets from itch.io.
-- Add ability to pause game and/or re-display instructions.
-- Create some kind of 'movement penalty' with crop lines. Maybe they're bounded as impassable, or maybe the player moves more slowly while intersecting the crop line.
-- Crops need to be watered to be harvested! Instead of a single interaction, each crop will require multiple interactions -- watering to allow a sprout to progress and harvesting when it's mature.
-- Point variance system: different crops are worth different amounts of points.
-- Poison mushrooms! Better not touch these...
-- Different difficulty levels. (Faster/shorter clock? Faster crop spawns? Higher point threshold for victory?)
-- If firing on all cylinders with other objectives, possibly integrate phaser.
+- This project was made with HTML/CSS/JS.
+- Heavily relied on HTML 5's Canvas element/API.
 
-## Potential Roadblocks
+## Project Retrospective
 
-- I've decided to do a canvas project instead of a DOM project because I have no experience with Canvas and thus it represents a greater opportunity for growth. Of course, this means it's very hard to estimate whether I can accomplish what I have in mind within a week. To account for this, I've shaved as much as I can from MVP into the stretch goals while still leaving a functional and entertaining game.
+### Wins
+
+This project was a great mix of 'comfort areas' (e.g., DOM manipulation) and tools with which I'm less experienced such as intervals, classes, and -- obviously -- Canvas API. I was fortunate to have a wide variety of challenges over the course of development; there's nothing more maddening than a project where every feature or bit of functionality is a Herculean effort. Here, I had some interesting puzzles that were relatively quick to solve ("how do I ensure plants spawn where I want them to, but also not let them spawn on top of each other?") and others that I really had to live with for a while (implementing sprite animation from a spritesheet).
+
+One particularly gratifying success I'm taking away from this project: I finally have a clearer understanding of the kinds of problems that classes and object-oriented design are great tools for solving.
+
+### Challenges
+
+Much of my development time was a game of triage: at all times I had various conflicting priorities, including getting my MVP features implemented, squashing bugs, refactoring parts of my code to keep it maintainable as I went, and editing/revising the aspects of the application that were already feature-complete. It was not an easy balancing act and there are a few items I'm disappointed I ran out of time for -- I'd have liked to get a broad refactor implemented and reduce the amount of responsibility carried by some of my code blocks (gameLoop is a good example of this). That said, I'm generally happy with how I managed those priorities over the course of the week, and I think in almost every case I picked the option that added the most value to the product.
+
+### Overall
+
+I'm extremely pleased with the result of my work on this project, and I think it forced me to level up my algorithmic thinking, my code organization, my bug-investigation methodology, and my pair programming. I'm very much looking forward to taking the skills honed here and applying them to subsequent projects.
+
+## Sources/Acknowledgements
+
+- Sprites by [Cup Nooble](https://cupnooble.itch.io/), sourced [here](https://cupnooble.itch.io/sprout-lands-asset-pack). This includes the background of the HTML body element.
+- Music by [Lolurio](https://lolurio.itch.io/), sourced [here](https://lolurio.itch.io/jazz-bossa-nova-music).
+- Logo animation by @juanedcabrera.
+- Additional thanks to @juanedcabrera for indespensable design consultation and game testing.
