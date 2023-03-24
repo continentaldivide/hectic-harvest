@@ -25,25 +25,31 @@ body {
 
 #container > aside {
   display: flex;
-  justify-content: center;
   align-items: flex-end;
 }
 
 #timerDisplay {
   grid-area: timerDisplay;
+  justify-content: flex-start;
 }
 
 #infoBar {
   grid-area: infoBar;
+  justify-content: center;
 }
 
 #pointDisplay {
   grid-area: pointDisplay;
+  justify-content: flex-end;
 }
 
 h2 {
-  color: #d1d8d3;
+  color: #555;
+  background-color: rgba(85, 85, 85, 0.2);
+  width: 50%;
+  border-radius: 10px;
   text-align: center;
+  font-size: 3em;
 }
 
 main {
@@ -123,6 +129,7 @@ p {
 .controlsKey {
   grid-area: controlsKey;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
