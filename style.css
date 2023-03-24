@@ -9,7 +9,6 @@
 body {
   background-image: url("assets/bgTile.png");
   background-size: 96px;
-  /* background-color: #193b22; */
   display: flex;
   justify-content: center;
 }
@@ -24,26 +23,22 @@ body {
     "game game game";
 }
 
-#timerDisplay {
-  grid-area: timerDisplay;
+#container > aside {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+}
+
+#timerDisplay {
+  grid-area: timerDisplay;
 }
 
 #infoBar {
   grid-area: infoBar;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
 }
 
 #pointDisplay {
   grid-area: pointDisplay;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  gap: 30%;
 }
 
 h2 {
@@ -53,7 +48,6 @@ h2 {
 
 main {
   grid-area: game;
-  position: relative;
 }
 
 #speakerPlayIcon {
