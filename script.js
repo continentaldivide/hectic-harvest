@@ -1,6 +1,6 @@
 console.log("Have a snack for energy before you start 🥕");
 console.log(
-  `Current documented high score: Skirball -- 3300 points\nWant to dethrone the champ?  Send an email with a screenshot of your\nhigh score and your preferred handle to andrew@andrewsmith.org`
+  `Current documented high score: Skirball -- 7400 points\nWant to dethrone the champ?  Send an email with a screenshot of your\nhigh score and your preferred handle to andrew@andrewsmith.org`
 );
 const pointDisplay = document.querySelector("#pointDisplay").firstChild;
 const timerDisplay = document.querySelector("#timerDisplay").firstChild;
